@@ -1,0 +1,29 @@
+﻿@model MovieRates.Models.Categorias
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>@Model.Nome</h1>
+<div>
+    @if (User.IsInRole("Gestor")) {
+        <a asp-action="Edit" asp-route-id="@Model.IdCategorias">Edit</a>
+    }
+</div><br />
+    <div>
+        @foreach (var item in Model.ListaDeFilmes) {
+            <div class="Filme">
+                <a asp-action="Details" asp-controller="Filmes" asp-route-id="@item.IdFilmes">
+                    <img class="FotoFilme" src="~/fotos/@Html.DisplayFor(modelItem => item.Capa)" />
+                    <div class="overlay">
+                        <div class="text">
+                            @Html.DisplayFor(modelItem => item.Titulo)
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+    
+
+    
